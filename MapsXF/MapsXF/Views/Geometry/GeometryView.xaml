@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MapsXF.GeometryView"
+             xmlns:local="clr-namespace:MapsXF"
+             xmlns:controls="clr-namespace:MapsXF.Controls"
+             Visual="Material">
+
+    <Frame Margin="8" VerticalOptions="End">
+        <ScrollView>
+            <StackLayout>
+                <Label Text="{Binding GeometryType}" />
+                <Entry 
+                    Opacity=".8"
+                    BackgroundColor="Transparent"
+                    Text="{Binding Name, Mode=TwoWay}"
+                    Placeholder="{local:Translate Gen_Name}" />
+                <Entry 
+                    Opacity=".8"
+                    BackgroundColor="Transparent"
+                    Text="{Binding About, Mode=TwoWay}"
+                    Placeholder="{local:Translate Gen_About}" />
+                <controls:PickerView 
+                    BackgroundColor="White"
+                    Padding="20"
+                    ItemsSource="{Binding ColorValues}"
+                    SelectedItem="{Binding SelectedColor, Mode=TwoWay}"
+                    IconFontFamily="{StaticResource FontAwesomeSolid}"
+                    Title="{local:Translate Select_Color}"
+                    Placeholder="{local:Translate Select_Color}"
+                    CancelText="{local:Translate Gen_Cancel}"
+                    IconTextSource="&#xf043;" />
+                <Grid HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button 
+                        Grid.Column="0"
+                        Style="{StaticResource FloatingButtonSmall}"
+                        Text="{StaticResource RemoveIcon}"
+                        BackgroundColor="{StaticResource Accent}"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        Command="{Binding DeleteGeometryCommand}" />
+                    <Button 
+                        Grid.Column="1"
+                        Style="{StaticResource FloatingButtonSmall}"
+                        BackgroundColor="{StaticResource DarkAccent}"
+                        Text="&#xf304;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        Command="{Binding EditGeometryCommand}" />
+                    <Button 
+                        Grid.Column="2"
+                        Style="{StaticResource FloatingButtonSmall}"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Text="{StaticResource CheckIcon}"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        Command="{Binding SaveGeometryCommand}" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+
+</ContentView>

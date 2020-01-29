@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MapsXF.UIKitHomePage"
+             xmlns:controls="clr-namespace:MapsXF.Controls"
+             Visual="Material"
+             x:Name="root">
+
+    <NavigationPage.TitleView>
+        <controls:PageTitleView Text="Welcome to XF UIKit" />
+    </NavigationPage.TitleView>
+
+    <ScrollView Padding="{StaticResource MainPadding}">
+        <StackLayout Spacing="{StaticResource MainSpacing}">
+            <!-- Article -->
+            <Label Text="Article" FontSize="Large" />
+            <Button Text="Article Browser" Command="{Binding ArticleCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Article Classic" Command="{Binding ArticleCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Article List" Command="{Binding ArticleCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Forms -->
+            <Label Text="Forms" FontSize="Large" />
+            <Button Text="Full Login" Command="{Binding FormsCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Full Sign up" Command="{Binding FormsCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Tabbed Login" Command="{Binding FormsCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Lists -->
+            <Label Text="Lists" FontSize="Large" />
+            <Button Text="Simple List" Command="{Binding ListCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Card List" Command="{Binding ListCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Variant List" Command="{Binding ListCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Details -->
+            <Label Text="Details" FontSize="Large" />
+            <Button Text="Detail" Command="{Binding DetailCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Card Detail" Command="{Binding DetailCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Variant Detail" Command="{Binding DetailCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Data -->
+            <Label Text="Data" FontSize="Large" />
+            <Button Text="Data Table" Command="{Binding DataCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Task Overview" Command="{Binding DataCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Task Browser" Command="{Binding DataCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Dashboard -->
+            <Label Text="Dashboard" FontSize="Large" />
+            <Button Text="Flat List" Command="{Binding DashboardCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Dashboard Image" Command="{Binding DashboardCommand, Source={x:Reference root}}" CommandParameter="2" />
+            <Button Text="Dashboard Cards" Command="{Binding DashboardCommand, Source={x:Reference root}}" CommandParameter="3" />
+            <!-- Social -->
+            <Label Text="Social" FontSize="Large" />
+            <Button Text="Social Card" Command="{Binding SocialCommand, Source={x:Reference root}}" CommandParameter="1" />
+            <Button Text="Contact Detail Card" Command="{Binding SocialCommand, Source={x:Reference root}}" CommandParameter="2" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

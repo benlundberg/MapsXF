@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MapsXF;assembly=MapsXF"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="MapsXF.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--Colors -->
+            <Color x:Key="DarkPrimaryColor">#8CC152</Color>
+            <Color x:Key="PrimaryColor">#A0D468</Color>
+            <Color x:Key="Accent">#FC6E51</Color>
+            <Color x:Key="DarkAccent">#E9573F</Color>
+            <Color x:Key="GrayDark">#AAB2BD</Color>
+            <Color x:Key="GrayMedium">#CCD1D9</Color>
+            <Color x:Key="Gray">#E6E9ED</Color>
+            <Color x:Key="GrayLight">#F5F7FA</Color>
+
+            <Color x:Key="ToolbarTextColor">#FFF</Color>
+            <Color x:Key="TextColor">#000</Color>
+            <Color x:Key="SecondaryTextColor">#FFF</Color>
+
+            <!-- Converters-->
+            <local:InvertedBoolConverter x:Key="InvertedBoolConv" />
+
+            <!-- Glyphs -->
+            <x:String x:Key="GeneralIcon">&#xf209;</x:String>
+            <x:String x:Key="RemoveIcon">&#xf2ed;</x:String>
+            <x:String x:Key="SendIcon">&#xf1d8;</x:String>
+            <x:String x:Key="CloseIcon">&#xf00d;</x:String>
+            <x:String x:Key="CheckIcon">&#xf00c;</x:String>
+            <x:String x:Key="AddIcon">&#xf067;</x:String>
+            <x:String x:Key="SearchIcon">&#xf002;</x:String>
+            <x:String x:Key="RulerIcon">&#xf545;</x:String>
+            
+            <!-- Fonts Start here -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat" />
+                <On Platform="UWP" Value="/Assets/Montserrat-Bold.ttf#Montserrat" />
+                <On Platform="iOS" Value="Montserrat-Bold" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat" />
+                <On Platform="UWP" Value="/Assets/Montserrat-Regular.ttf#Montserrat" />
+                <On Platform="iOS" Value="Montserrat-Regular" />
+            </OnPlatform>
+            <!-- Fonts Ends here -->
+
+            <!-- Entry placeholder and textcolor  -->
+
+            <x:Double x:Key="GoldenRatio">1.618</x:Double>
+
+            <x:Double x:Key="ControlPadding">10</x:Double>
+
+            <x:Double x:Key="LargeControlPadding">24</x:Double>
+
+            <x:Double x:Key="ToolbarItemSize">18</x:Double>
+
+            <x:Double x:Key="MainSpacing">10</x:Double>
+
+            <x:Double x:Key="LargeSpacing">20</x:Double>
+
+            <Thickness x:Key="FormPadding">30, 20</Thickness>
+
+            <OnIdiom x:Key="MainPadding" x:TypeArguments="Thickness">
+                <OnIdiom.Tablet>40, 20, 40, 20</OnIdiom.Tablet>
+                <OnIdiom.Phone>16, 10, 16, 10</OnIdiom.Phone>
+                <OnIdiom.Desktop>80, 40, 80, 40</OnIdiom.Desktop>
+            </OnIdiom>
+
+            <OnIdiom x:Key="HorizontalPadding" x:TypeArguments="Thickness">
+                <OnIdiom.Tablet>40, 0, 40, 0</OnIdiom.Tablet>
+                <OnIdiom.Phone>16, 0, 16, 0</OnIdiom.Phone>
+                <OnIdiom.Desktop>80, 0, 80, 0</OnIdiom.Desktop>
+            </OnIdiom>
+
+            <OnIdiom x:Key="VerticalPadding" x:TypeArguments="Thickness">
+                <OnIdiom.Tablet>0, 20, 0, 20</OnIdiom.Tablet>
+                <OnIdiom.Phone>0, 10, 0, 10</OnIdiom.Phone>
+                <OnIdiom.Desktop>0, 40, 0, 40</OnIdiom.Desktop>
+            </OnIdiom>
+
+            <OnPlatform x:Key="EntryTextColor" x:TypeArguments="Color">
+                <On Platform="Android" Value="White" />
+                <On Platform="UWP" Value="Black" />
+                <On Platform="iOS" Value="Black" />
+            </OnPlatform>
+
+            <!-- Platform specifics Ends here -->
+
+            <!-- Styles -->
+            <Style TargetType="ff:CachedImage">
+                <Setter Property="BitmapOptimizations" Value="True" />
+                <Setter Property="DownsampleToViewSize" Value="True" />
+            </Style>
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BarTextColor" Value="{StaticResource ToolbarTextColor}" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource GrayLight}" />
+            </Style>
+            
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="OutlineButton">
+                <Setter Property="Visual" Value="Default" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{StaticResource Accent}" />
+                <Setter Property="BorderColor" Value="{StaticResource Accent}" />
+                <Setter Property="BorderWidth" Value="2" />
+            </Style>
+
+            <Style x:Key="FloatingButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="32" />
+                <Setter Property="HeightRequest" Value="64" />
+                <Setter Property="WidthRequest" Value="64" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            
+            <Style x:Key="FloatingButtonSmall" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="26" />
+                <Setter Property="HeightRequest" Value="52" />
+                <Setter Property="WidthRequest" Value="52" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            
+            <Style TargetType="Frame">
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BorderColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="LightGray" />
+                            <On Platform="UWP" Value="Transparent" />
+                            <On Platform="iOS" Value="Transparent" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HasShadow">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Boolean">
+                            <On Platform="Android" Value="True" />
+                            <On Platform="UWP" Value="False" />
+                            <On Platform="iOS" Value="False" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

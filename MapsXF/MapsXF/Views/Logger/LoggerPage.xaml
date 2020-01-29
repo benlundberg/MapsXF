@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MapsXF.LoggerPage"
+             xmlns:local="clr-namespace:MapsXF"
+             xmlns:controls="clr-namespace:MapsXF.Controls"
+             Visual="Material"
+             x:DataType="local:LoggerViewModel">
+
+    <NavigationPage.TitleView>
+        <controls:PageTitleView Text="{local:Translate Gen_Log}" />
+    </NavigationPage.TitleView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{local:Translate Gen_Clear}" Command="{Binding ClearLogCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource 
+                    Size="{StaticResource ToolbarItemSize}"
+					Glyph="{StaticResource RemoveIcon}"
+					Color="{StaticResource ToolbarTextColor}"
+					FontFamily="{StaticResource FontAwesomeRegular}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Text="{local:Translate Gen_Send}" Command="{Binding SendLogCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource 
+                    Size="{StaticResource ToolbarItemSize}"
+					Glyph="{StaticResource SendIcon}"
+					Color="{StaticResource ToolbarTextColor}"
+					FontFamily="{StaticResource FontAwesomeRegular}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView Padding="{StaticResource MainPadding}">
+            <Label Text="{Binding LogText}" />
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>079f2a30-4d98-48c9-82be-4be4ff009ce3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MapsXF.Esri.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Configs\ServiceConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedMapView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\GeometryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\GraphicExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\GraphicsOverlayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\GraphicFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ColorHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LayerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OfflineMapItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Providers\OverlayProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Providers\SymbolProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configs\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BasemapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CredentialService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DrawService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\EditorService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LayerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\OfflineMapService.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:MapsXF.Controls"
+    x:Class="MapsXF.Controls.ValidationEntry"
+    x:DataType="controls:ValidationEntry"
+    x:Name="root"
+    Visual="Default">
+
+    <StackLayout>
+        <Grid ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Margin="0, 0, 4, 0"
+                FontSize="Large"
+                IsVisible="{Binding HasIcon, Source={x:Reference root}}"
+                VerticalOptions="Center"
+                Text="{Binding IconTextSource, Source={x:Reference root}}"
+                TextColor="{Binding IconColor, Source={x:Reference root}}"
+                FontFamily="{Binding IconFontFamily, Source={x:Reference root}}" />
+            <Entry
+                Grid.Column="1"
+                Placeholder="{Binding Placeholder, Source={x:Reference root}}"
+                PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference root}}"
+                Text="{Binding Value.Value, Source={x:Reference root}, Mode=TwoWay}"
+                TextColor="{Binding TextColor, Source={x:Reference root}}"
+                IsPassword="{Binding IsPassword, Source={x:Reference root}}"
+                Keyboard="{Binding Keyboard, Source={x:Reference root}}"
+                Unfocused="Entry_Unfocused" />
+        </Grid>
+        <Frame 
+            Padding="4, 0"
+            HasShadow="False"
+            BackgroundColor="#B00020"
+            BorderColor="#B00020"
+            HorizontalOptions="Start"
+            CornerRadius="10"
+            IsVisible="{Binding Value.IsValid, Source={x:Reference root}, Converter={StaticResource InvertedBoolConv}}">
+            <Label 
+                Text="{Binding Value.Error, Source={x:Reference root}}"
+                FontSize="Small"
+                TextColor="White"
+                Padding="8"
+                IsVisible="{Binding Value.IsValid, Source={x:Reference root}, Converter={StaticResource InvertedBoolConv}}" />
+        </Frame>
+    </StackLayout>
+</ContentView>
