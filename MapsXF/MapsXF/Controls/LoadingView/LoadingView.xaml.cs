@@ -28,8 +28,7 @@ namespace MapsXF.Controls
             propertyName: "Text",
             returnType: typeof(string),
             declaringType: typeof(LoadingView),
-            defaultValue: ComponentContainer.Current.Resolve<Core.ITranslateService>().Translate("Gen_Loading"),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultValue: MapsXF.Resources.Strings.Gen_Loading);
 
         public string Text
         {
@@ -37,7 +36,7 @@ namespace MapsXF.Controls
             set => SetValue(TextProperty, value);
         }
 
-        public Color TextColor { get; set; } = Application.Current.AccentColor();
-        public Color Color { get; set; } = Application.Current.AccentColor();
+        public Color TextColor { get; set; } = Application.Current.PrimaryColor();
+        public Color Color { get; set; } = Application.Current.PrimaryColor();
     }
 }

@@ -170,5 +170,12 @@ namespace MapsXF.Android
 
             return File.ReadAllText(path);
         }
+
+        public Stream GetStreamFromAssets(string path)
+        {
+            var assets = global::Android.App.Application.Context.Assets;
+
+            return assets.Open(path);
+        }
     }
 }

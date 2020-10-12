@@ -2,6 +2,7 @@
 using Esri.ArcGISRuntime.UI;
 using Esri.Core.Extensions;
 using Esri.Core.Factories;
+using Esri.Core.Models;
 using Esri.Core.Providers;
 using MapsXF.Core;
 using System;
@@ -132,7 +133,7 @@ namespace Esri.Core.Services
                 item.GeometryJson = geometry.ToJson();
                 item.GeometryType = geometry.GeometryType.ToString();
                 
-                await DatabaseRepository.Current.InsertOrReplaceAsync(item);
+                await DatabaseRepository.Current.InsertAsync(item);
 
                 graphic.Geometry = geometry;
             }

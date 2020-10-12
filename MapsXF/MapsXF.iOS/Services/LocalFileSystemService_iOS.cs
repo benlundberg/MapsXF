@@ -1,4 +1,5 @@
 ﻿using MapsXF.Core;
+using Foundation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -168,6 +169,21 @@ namespace MapsXF.iOS
             }
 
             return File.ReadAllText(path);
+        }
+
+        public Stream GetStreamFromAssets(string path)
+        {
+            string fontFile = Path.Combine(NSBundle.MainBundle.BundlePath, path);
+
+            using (var asset = File.OpenRead(fontFile))
+            {
+                var fontStream = new MemoryStream();
+                asset.CopyTo(fontStream);
+                fontStream.Flush();
+                fontStream.Position = 0;
+
+                return fontStream;
+            }
         }
     }
 }

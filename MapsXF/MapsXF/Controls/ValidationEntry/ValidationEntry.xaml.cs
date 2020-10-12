@@ -12,21 +12,24 @@ namespace MapsXF.Controls
             InitializeComponent();
         }
 
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(
-            propertyName: "Value",
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: "Text",
             returnType: typeof(ValidatableObject<string>),
-            declaringType: typeof(ValidationEntry),
+            declaringType: typeof(FrameEntry),
             defaultValue: default(ValidatableObject<string>));
 
-        public ValidatableObject<string> Value
+        public ValidatableObject<string> Text
         {
-            get { return (ValidatableObject<string>)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get { return (ValidatableObject<string>)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
 
         private void Entry_Unfocused(object sender, FocusEventArgs e)
         {
-            Value?.Validate();
+            if (HasValidation)
+            {
+                Text?.Validate();
+            }
         }
 
         public Keyboard Keyboard { get; set; }
@@ -38,5 +41,6 @@ namespace MapsXF.Controls
         public string IconTextSource { get; set; }
         public Color IconColor { get; set; } = Color.Black;
         public bool HasIcon => !string.IsNullOrEmpty(IconTextSource);
+        public bool HasValidation { get; set; }
     }
 }

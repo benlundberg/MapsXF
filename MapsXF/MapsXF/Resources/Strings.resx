@@ -32,7 +32,7 @@
     
     Each data row contains a name, and value. The row also contains a 
     type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
+    text/value conversion through the TypeConverter MapsXF. 
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
@@ -141,15 +141,6 @@
   <data name="Gen_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="Permission_Message" xml:space="preserve">
-    <value>To use this function the app needs access to:</value>
-  </data>
-  <data name="Permission_Settings" xml:space="preserve">
-    <value>Open settings?</value>
-  </data>
-  <data name="Permission_Title" xml:space="preserve">
-    <value>Access for:</value>
-  </data>
   <data name="Gen_Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
@@ -164,101 +155,5 @@
   </data>
   <data name="Gen_Delete" xml:space="preserve">
     <value>Delete</value>
-  </data>
-  <data name="Create_Map_Name" xml:space="preserve">
-    <value>Map name</value>
-  </data>
-  <data name="Gen_About" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="Gen_Downloaded_Maps" xml:space="preserve">
-    <value>Offline maps</value>
-  </data>
-  <data name="Gen_Download_Map_Failed" xml:space="preserve">
-    <value>Download map failed</value>
-  </data>
-  <data name="Gen_Download_Offline_Map" xml:space="preserve">
-    <value>Download offline map</value>
-  </data>
-  <data name="Gen_Draw" xml:space="preserve">
-    <value>Draw</value>
-  </data>
-  <data name="Gen_LocationOptions" xml:space="preserve">
-    <value>Location options</value>
-  </data>
-  <data name="Gen_Map" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="Gen_Measure" xml:space="preserve">
-    <value>Measure</value>
-  </data>
-  <data name="Gen_Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Gen_Off" xml:space="preserve">
-    <value>Off</value>
-  </data>
-  <data name="Gen_Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="Gen_On" xml:space="preserve">
-    <value>On</value>
-  </data>
-  <data name="Gen_Show_Downloaded_Offline_Maps" xml:space="preserve">
-    <value>Show offline maps</value>
-  </data>
-  <data name="Gps_Compass" xml:space="preserve">
-    <value>Compass</value>
-  </data>
-  <data name="Gps_Navigation" xml:space="preserve">
-    <value>Navigation</value>
-  </data>
-  <data name="Gps_ReCenter" xml:space="preserve">
-    <value>Re center</value>
-  </data>
-  <data name="Measure_Area" xml:space="preserve">
-    <value>Measure area</value>
-  </data>
-  <data name="Measure_Lenght" xml:space="preserve">
-    <value>Measure length</value>
-  </data>
-  <data name="Missing_Map_Name" xml:space="preserve">
-    <value>Missing map name</value>
-  </data>
-  <data name="Select_Basemap" xml:space="preserve">
-    <value>Basemap</value>
-  </data>
-  <data name="Select_Color" xml:space="preserve">
-    <value>Select color</value>
-  </data>
-  <data name="Select_Geometry" xml:space="preserve">
-    <value>Select geometry</value>
-  </data>
-  <data name="Select_Gps_Settings" xml:space="preserve">
-    <value>Select GPS settings</value>
-  </data>
-  <data name="Select_Sweden_Basemap" xml:space="preserve">
-    <value>Sweden map</value>
-  </data>
-  <data name="Gen_Draw_Area_To_Download" xml:space="preserve">
-    <value>Draw an area to download</value>
-  </data>
-  <data name="Download_Region" xml:space="preserve">
-    <value>Download area</value>
-  </data>
-  <data name="Gen_Sure_Remove_Offline_Map" xml:space="preserve">
-    <value>Delete offline map?</value>
-  </data>
-  <data name="Gen_Sure_Remove_All_Offline_Map" xml:space="preserve">
-    <value>Delete all offline maps?</value>
-  </data>
-  <data name="Gen_Geometries" xml:space="preserve">
-    <value>Geometries</value>
-  </data>
-  <data name="Gen_Sure_Remove_All_Geometries" xml:space="preserve">
-    <value>Delete all geometries?</value>
-  </data>
-  <data name="Gen_Sure_Remove_Geometry" xml:space="preserve">
-    <value>Delete geometry?</value>
   </data>
 </root>

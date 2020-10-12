@@ -17,8 +17,8 @@ namespace MapsXF.UWP
         private static void RegisterTypes()
         {
             // Services
-            ComponentContainer.Current.Register<ILocalizeService, LocalizeService_UWP>();
             ComponentContainer.Current.Register<ILocalFileSystemService, LocalFileSystemService_UWP>(singelton: true);
+            ComponentContainer.Current.Register<IDialogService, DialogService_UWP>(singelton: true);
         }
     }
 }

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MapsXF.MapPage"
+             xmlns:local="clr-namespace:MapsXF;assembly=MapsXF"
+             xmlns:esriControls="clr-namespace:Esri.Core.Controls;assembly=MapsXF"
+             xmlns:esriModels="clr-namespace:Esri.Core.Models;assembly=MapsXF"
+             xmlns:controls="clr-namespace:MapsXF.Controls;assembly=MapsXF"
+             xmlns:toolkit="clr-namespace:Esri.ArcGISRuntime.Toolkit.Xamarin.Forms;assembly=Esri.ArcGISRuntime.Toolkit.Xamarin.Forms"
+             Visual="Material"
+             x:DataType="local:MapViewModel"
+             Title="Map">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{x:Static properties:Strings.Gen_Measure}" Command="{Binding MeasureCommand}" Order="Primary">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    Size="{StaticResource ToolbarItemSize}"
+                    Color="{StaticResource ToolbarTextColor}"
+                    Glyph="{StaticResource RulerIcon}"
+                    FontFamily="{StaticResource FontAwesomeSolid}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Text="Baskarta" Command="{Binding ChangeBasemapCommand}" Order="Secondary" />
+        <ToolbarItem Text="Sverigekarta" Command="{Binding SwedenBasemapCommand}" Order="Secondary" />
+        <ToolbarItem Text="Ladda ner offlinekarta" Command="{Binding DownloadOfflineMapCommand}" Order="Secondary" />
+        <ToolbarItem Text="Rita" Command="{Binding DrawCommand}" Order="Secondary" />
+        <ToolbarItem Text="GPS" Command="{Binding LocationOptionsCommand}" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid>
+        <esriControls:ExtendedMapView x:Name="mapView" SketchEditor="{Binding Editor.SketchEditor}" Map="{Binding Map}" MapHoldCommand="{Binding MapHoldCommand}" MapClickCommand="{Binding MapClickedCommand}" MapLoadedCommand="{Binding MapLoadedCommand}" />
+        
+        <!-- Scaleline -->
+        <toolkit:ScaleLine MapView="{x:Reference mapView}" VerticalOptions="End" Margin="10" />
+        
+        <!-- Editor -->
+        <ScrollView Padding="10" IsVisible="{Binding Editor.IsActive}" VerticalOptions="End" Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal">
+                <!-- Cancel -->
+                <Button 
+                    Command="{Binding Editor.SketchEditor.CancelCommand}"
+                    Style="{StaticResource FloatingButtonMini}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Text="&#xf410;" />
+                <!-- Drop pin -->
+                <Button 
+                    Style="{StaticResource FloatingButtonMini}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Text="&#xf276;" />
+                <!-- Undo -->
+                <Button 
+                    Command="{Binding Editor.SketchEditor.UndoCommand}"
+                    Style="{StaticResource FloatingButtonMini}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Text="&#xf0e2;" />
+                <!-- Redo -->
+                <Button 
+                    Command="{Binding Editor.SketchEditor.RedoCommand}"
+                    Style="{StaticResource FloatingButtonMini}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Text="&#xf01e;" />
+                <!-- Complete -->
+                <Button 
+                    Command="{Binding Editor.SketchEditor.CompleteCommand}"
+                    Style="{StaticResource FloatingButtonMini}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Text="&#xf00c;" />
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Follow position -->
+        <Button
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Margin="10"
+            Text="&#xf05b;"
+            Command="{Binding PositionClickedCommand}"
+            FontFamily="{StaticResource FontAwesomeSolid}"
+            Style="{StaticResource FloatingButtonMini}">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding FollowPosition}" Value="True">
+                    <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding FollowPosition}" Value="False">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+
+        <Grid
+            Margin="10"
+            VerticalOptions="Start"
+            HorizontalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!-- Compass -->
+            <Grid BackgroundColor="Transparent" HorizontalOptions="Center">
+                <toolkit:Compass GeoView="{x:Reference mapView}" HorizontalOptions="Center" />
+                <Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CompassClickCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+            <!-- Layers -->
+            <controls:ItemsControl Grid.Row="1" HorizontalOptions="End" ItemsSource="{Binding LayerService.MapLayers}">
+                <controls:ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="esriModels:LayerItem">
+                        <Button
+                            Text="{Binding Text}"
+                            Command="{Binding ShowCommand}"
+                            FontFamily="{Binding FontFamily}"
+                            Style="{StaticResource FloatingButtonMini}">   
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding Layer.IsVisible}" Value="True">
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button" Binding="{Binding Layer.IsVisible}" Value="False">
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </DataTemplate>
+                </controls:ItemsControl.ItemTemplate>
+            </controls:ItemsControl>
+        </Grid>
+
+        <StackLayout
+            IsVisible="{Binding LayerService.AnyLayerIsVisible}"
+            BackgroundColor="{StaticResource GrayLight}"
+            VerticalOptions="End" 
+            Margin="10">
+            <!-- Layer opacity slider -->
+            <Slider 
+                BackgroundColor="{StaticResource Accent}" 
+                MinimumTrackColor="{StaticResource Accent}"
+                ThumbColor="{StaticResource Accent}"
+                MaximumTrackColor="{StaticResource GrayMedium}" 
+                Minimum="0" 
+                Maximum="1" 
+                Value="{Binding LayerService.LayerOpacity, Mode=TwoWay}">
+                <Slider.Behaviors>
+                    <local:EventToCommandBehavior EventName="ValueChanged" Command="{Binding LayerService.LayerOpacityChangedCommand}" />
+                </Slider.Behaviors>
+            </Slider>
+        </StackLayout>
+
+        <!-- Info about Area/Length -->
+        <Frame Margin="8" VerticalOptions="Start" IsVisible="{Binding Editor.IsGeometryInfoVisible}" BackgroundColor="{StaticResource GrayLight}">
+            <Label Text="{Binding Editor.GeometryInfo}" />
+        </Frame>
+
+        <!-- Geometry Info -->
+        <ContentView IsClippedToBounds="True" VerticalOptions="End" Content="{Binding PopupView}" IsVisible="{Binding PopupView.IsVisible}" />
+
+    </Grid>
+
+</ContentPage>

@@ -9,28 +9,34 @@ using System.Threading.Tasks;
 
 namespace MapsXF.Core
 {
-    public class DatabaseRepository
+    public class DatabaseRepository : IDatabaseRepository
     {
-        private static readonly Lazy<DatabaseRepository> implementation = new Lazy<DatabaseRepository>(() => CreateStore(), isThreadSafe: true);
+        static Lazy<IDatabaseRepository> implementation;
 
-        public static DatabaseRepository Current
+        public static IDatabaseRepository Current
         {
             get
             {
-                var ret = implementation.Value;
+                var ret = implementation?.Value;
 
                 if (ret == null)
                 {
-                    throw new NotImplementedException();
+                    implementation = new Lazy<IDatabaseRepository>(() => CreateStore(), isThreadSafe: true);
+                    ret = implementation.Value;
                 }
 
                 return ret;
             }
         }
 
-        private static DatabaseRepository CreateStore()
+        private static IDatabaseRepository CreateStore()
         {
             return new DatabaseRepository();
+        }
+
+        public void Init(IDatabaseRepository database)
+        {
+            implementation = new Lazy<IDatabaseRepository>(() => database, isThreadSafe: true);
         }
 
         public void Init(string databasePath)
@@ -267,11 +273,11 @@ namespace MapsXF.Core
             return item;
         }
 
-        public async Task<int> InsertAsync<T>(T entity)
+        public async Task<bool> InsertAsync<T>(T entity)
         {
-            int id = await connection.InsertAsync(entity);
+            int rows = await connection.InsertAsync(entity);
 
-            return id;
+            return rows != 0;
         }
 
         public async Task<bool> InsertOrReplaceWithChildrenAsync<T>(T entity)

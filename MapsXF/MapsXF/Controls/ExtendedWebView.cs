@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MapsXF
+namespace MapsXF.Controls
 {
     public class ExtendedWebView : WebView
     {

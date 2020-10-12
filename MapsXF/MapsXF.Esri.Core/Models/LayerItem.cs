@@ -1,5 +1,4 @@
 ﻿using Esri.ArcGISRuntime.Mapping;
-using MapsXF;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;

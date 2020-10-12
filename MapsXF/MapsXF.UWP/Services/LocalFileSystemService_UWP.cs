@@ -169,5 +169,10 @@ namespace MapsXF.UWP.Helpers
 
             return File.ReadAllText(path);
         }
+
+        public Stream GetStreamFromAssets(string path)
+        {
+            return null;
+        }
     }
 }

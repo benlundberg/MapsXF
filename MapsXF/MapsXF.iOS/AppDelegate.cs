@@ -1,5 +1,7 @@
-﻿using Foundation;
+﻿using MapsXF.Core;
+using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace MapsXF.iOS
 {
@@ -24,18 +26,25 @@ namespace MapsXF.iOS
                 "FastRenderers_Experimental",
                 "CollectionView_Experimental",
                 "CarouselView_Experimental",
-                "IndicatorView_Experimental");
+                "IndicatorView_Experimental",
+                "SwipeView_Experimental",
+                "Expander_Experimental",
+                "Brush_Experimental",
+                "Shapes_Experimental");
+
+            Rg.Plugins.Popup.Popup.Init();
 
             Xamarin.Forms.Forms.Init();
 
             Bootstrapper_iOS.Initialize();
 
-            LoadApplication(new App());
+            // Notification receiver
+            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
 
-            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes
-            {
-                Font = UIFont.FromName("Montserrat-Regular", 20)
-            });
+            // Init notifications
+            ComponentContainer.Current.Resolve<INotificationService>().Initialize();
+
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }

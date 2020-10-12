@@ -30,10 +30,10 @@
                 Grid.Column="2"
                 FontSize="Medium"
                 FontAttributes="Bold"
-                TextColor="{StaticResource Accent}"
+                TextColor="{StaticResource PrimaryColor}"
                 HorizontalOptions="End"
                 VerticalOptions="Center"
-                Text="{Binding SelectedItem, Source={x:Reference root}, FallbackValue={Binding Placeholder}}">
+                Text="{Binding PickerText, Source={x:Reference root}}">
             </Label>
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding SelectCommand, Source={x:Reference root}}" />

@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MapsXF.FlatListPage"
-             xmlns:local="clr-namespace:MapsXF"
+             x:Class="MapsXF.UIKit.Views.FlatListPage"
+             xmlns:local="clr-namespace:MapsXF.UIKit"
              xmlns:controls="clr-namespace:MapsXF.Controls"
              Visual="Material"
              x:DataType="local:DashboardViewModel">

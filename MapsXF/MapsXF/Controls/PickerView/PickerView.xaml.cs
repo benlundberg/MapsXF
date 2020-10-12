@@ -17,7 +17,7 @@ namespace MapsXF.Controls
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
             propertyName: "ItemsSource",
             returnType: typeof(IList<string>),
-            declaringType: typeof(SegmentControl),
+            declaringType: typeof(PickerView),
             defaultValue: default(IList<string>));
 
         public IList<string> ItemsSource
@@ -50,11 +50,12 @@ namespace MapsXF.Controls
         }));
 
         public string Title { get; set; }
+        public string PickerText => !string.IsNullOrEmpty(SelectedItem) ? SelectedItem : Placeholder;
         public Color TitleColor { get; set; } = Color.Black;
         public string CancelText { get; set; }
         public string Placeholder { get; set; }
-        public Color PlaceholderColor { get; set; } = App.Current.AccentColor();
-        public Color TextColor { get; set; } = App.Current.AccentColor();
+        public Color PlaceholderColor { get; set; } = App.Current.PrimaryColor();
+        public Color TextColor { get; set; } = App.Current.PrimaryColor();
         public string IconFontFamily { get; set; }
         public string IconTextSource { get; set; }
         public Color IconColor { get; set; } = Color.Black;

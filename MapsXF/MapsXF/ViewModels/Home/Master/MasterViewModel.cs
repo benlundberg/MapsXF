@@ -24,18 +24,18 @@ namespace MapsXF
             {
                 new MenuViewModel
                 {
-                    Action = () => masterDetailPage.Detail = new NavigationPage(ViewContainer.Current.CreatePage(mapViewModel)),
-                    Title = Translate("Gen_Map")
+                    Page = new NavigationPage(ViewContainer.Current.CreatePage(mapViewModel)),
+                    Title = "Gen_Map"
                 },
                 new MenuViewModel
                 {
                     Action = mapViewModel.ShowDownloadedMaps,
-                    Title = Translate("Gen_Downloaded_Maps")
+                    Title = "Gen_Downloaded_Maps"
                 },
                 new MenuViewModel
                 {
                     Action = mapViewModel.ShowGeometries,
-                    Title = Translate("Gen_Geometries")
+                    Title = "Gen_Geometries"
                 }
             };
 
@@ -44,19 +44,12 @@ namespace MapsXF
             {
                 MasterItems.Add(new MenuViewModel()
                 {
-                    Title = Translate("Gen_Log"),
+                    Title = Resources.Strings.Gen_Log,
                     Page = new NavigationPage(ViewContainer.Current.CreatePage<LoggerViewModel>())
                 });
             }
 
-            if (MasterItems.FirstOrDefault()?.Page == null)
-            {
-                MasterItems.FirstOrDefault().Action();
-            }
-            else
-            {
-                ItemSelected(MasterItems.FirstOrDefault()?.Page);
-            }
+            ItemSelected(MasterItems.FirstOrDefault()?.Page);
         }
 
         private void ItemSelected(Page page)
@@ -99,6 +92,6 @@ namespace MapsXF
 
         public string Title { get; set; }
 
-        private MasterDetailPage masterDetailPage;
+        private readonly MasterDetailPage masterDetailPage;
     }
 }

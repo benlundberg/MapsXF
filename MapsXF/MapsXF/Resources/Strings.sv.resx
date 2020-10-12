@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GenErr_CheckYourNetworkMessage" xml:space="preserve">
-    <value>Var vänlig kontrollera din nätverksanslutning och försök igen.</value>
+    <value>Var vänlig kontrollera din internetanslutning/mobildata och försök igen.</value>
   </data>
   <data name="GenErr_NoNetworkMessage" xml:space="preserve">
-    <value>Den här funktionen kräver att du är online.</value>
+    <value>Den här funktionen kräver att du har åtkomst till internet.</value>
   </data>
   <data name="GenErr_NoNetworkTitle" xml:space="preserve">
-    <value>Saknar internetuppkoppling</value>
+    <value>Saknar internetanslutning</value>
   </data>
   <data name="Gen_Cancel" xml:space="preserve">
     <value>Avbryt</value>
@@ -141,15 +141,6 @@
   <data name="Gen_Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="Permission_Message" xml:space="preserve">
-    <value>För att använda denna funktion behöver appen behörighet till:</value>
-  </data>
-  <data name="Permission_Settings" xml:space="preserve">
-    <value>Öppna inställningar?</value>
-  </data>
-  <data name="Permission_Title" xml:space="preserve">
-    <value>Behörighet för:</value>
-  </data>
   <data name="Gen_Clear" xml:space="preserve">
     <value>Rensa</value>
   </data>
@@ -164,101 +155,5 @@
   </data>
   <data name="Gen_Delete" xml:space="preserve">
     <value>Ta bort</value>
-  </data>
-  <data name="Create_Map_Name" xml:space="preserve">
-    <value>Kartnamn</value>
-  </data>
-  <data name="Gen_About" xml:space="preserve">
-    <value>Om</value>
-  </data>
-  <data name="Gen_Downloaded_Maps" xml:space="preserve">
-    <value>Offlinekartor</value>
-  </data>
-  <data name="Gen_Download_Map_Failed" xml:space="preserve">
-    <value>Nedladdning misslyckades</value>
-  </data>
-  <data name="Gen_Download_Offline_Map" xml:space="preserve">
-    <value>Ladda ner karta</value>
-  </data>
-  <data name="Gen_Draw" xml:space="preserve">
-    <value>Rita</value>
-  </data>
-  <data name="Gen_LocationOptions" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="Gen_Map" xml:space="preserve">
-    <value>Karta</value>
-  </data>
-  <data name="Gen_Measure" xml:space="preserve">
-    <value>Mät</value>
-  </data>
-  <data name="Gen_Name" xml:space="preserve">
-    <value>Namn</value>
-  </data>
-  <data name="Gen_Off" xml:space="preserve">
-    <value>Av</value>
-  </data>
-  <data name="Gen_Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="Gen_On" xml:space="preserve">
-    <value>På</value>
-  </data>
-  <data name="Gen_Show_Downloaded_Offline_Maps" xml:space="preserve">
-    <value>Visa offlinekartor</value>
-  </data>
-  <data name="Gps_Compass" xml:space="preserve">
-    <value>Kompass</value>
-  </data>
-  <data name="Gps_Navigation" xml:space="preserve">
-    <value>Navigering</value>
-  </data>
-  <data name="Gps_ReCenter" xml:space="preserve">
-    <value>Centrera</value>
-  </data>
-  <data name="Measure_Area" xml:space="preserve">
-    <value>Mät area</value>
-  </data>
-  <data name="Measure_Lenght" xml:space="preserve">
-    <value>Mät längd</value>
-  </data>
-  <data name="Missing_Map_Name" xml:space="preserve">
-    <value>Saknar kartnamn</value>
-  </data>
-  <data name="Select_Basemap" xml:space="preserve">
-    <value>Baskarta</value>
-  </data>
-  <data name="Select_Color" xml:space="preserve">
-    <value>Välj färg</value>
-  </data>
-  <data name="Select_Geometry" xml:space="preserve">
-    <value>Välj geometri</value>
-  </data>
-  <data name="Select_Gps_Settings" xml:space="preserve">
-    <value>Välj GPS inställning</value>
-  </data>
-  <data name="Select_Sweden_Basemap" xml:space="preserve">
-    <value>Sverigekarta</value>
-  </data>
-  <data name="Gen_Draw_Area_To_Download" xml:space="preserve">
-    <value>Rita ett område som du vill ladda ner</value>
-  </data>
-  <data name="Download_Region" xml:space="preserve">
-    <value>Ladda ner område</value>
-  </data>
-  <data name="Gen_Sure_Remove_Offline_Map" xml:space="preserve">
-    <value>Ta bort offlinekarta?</value>
-  </data>
-  <data name="Gen_Sure_Remove_All_Offline_Map" xml:space="preserve">
-    <value>Ta bort alla offlinekartor?</value>
-  </data>
-  <data name="Gen_Geometries" xml:space="preserve">
-    <value>Geometrier</value>
-  </data>
-  <data name="Gen_Sure_Remove_All_Geometries" xml:space="preserve">
-    <value>Ta bort alla geometrier?</value>
-  </data>
-  <data name="Gen_Sure_Remove_Geometry" xml:space="preserve">
-    <value>Ta bort geometri?</value>
   </data>
 </root>

@@ -9,8 +9,8 @@ namespace MapsXF
         public static void RegisterTypes()
         {
             // Services
-            ComponentContainer.Current.Register<ITranslateService, TranslateService>();
             ComponentContainer.Current.Register<ILoggerService, LoggerService>(singelton: true);
+            ComponentContainer.Current.Register<IConnectivityService, ConnectivityService>(singelton: true);
         }
 
         public static void RegisterViews()
@@ -26,7 +26,6 @@ namespace MapsXF
         {
             DatabaseRepository.Current.CreateTablesAsync(new List<Type>()
             {
-                typeof(GeometryItem)
             }).ConfigureAwait(false);
         }
     }

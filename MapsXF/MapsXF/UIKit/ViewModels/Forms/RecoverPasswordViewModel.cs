@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MapsXF
+namespace MapsXF.UIKit
 {
     public class RecoverPasswordViewModel : BaseViewModel
     {
@@ -13,8 +13,8 @@ namespace MapsXF
         {
             Email = new ValidatableObject<string>(new List<IValidationRule<string>>
             {
-                new IsNotNullOrEmptyRule<string>(Translate("Missing_Mail")),
-                new IsValidEmailRule<string>(Translate("Invalid_Email"))
+                new IsNotNullOrEmptyRule<string>("You need to provide an e-mail"),
+                new IsValidEmailRule<string>("You need to provide a valid e-mail")
             });
         }
 
@@ -23,7 +23,7 @@ namespace MapsXF
         {
             if (!Email.Validate())
             {
-                ShowAlert(Email.Error, Translate("Forgot_Password"));
+                ShowAlert(Email.Error, "Forgot password");
                 return;
             }
 

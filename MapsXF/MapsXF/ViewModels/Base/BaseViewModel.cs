@@ -1,10 +1,8 @@
 ﻿using MapsXF.Core;
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MapsXF
@@ -16,7 +14,6 @@ namespace MapsXF
         /// </summary>
         public virtual void OnPageCreated(Page page)
         {
-
         }
 
         /// <summary>
@@ -38,16 +35,6 @@ namespace MapsXF
         /// </summary>
         public virtual void Disappearing()
         {
-        }
-
-        /// <summary>
-        /// Translates a key in resources to correct language
-        /// </summary>
-        /// <param name="key">Key word to translate</param>
-        /// <returns>Translated word</returns>
-        protected string Translate(string key)
-        {
-            return TranslateHelper.Translate(key);
         }
 
         /// <summary>
@@ -76,15 +63,15 @@ namespace MapsXF
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                title = Translate("GenErr_NoNetworkTitle");
+                title = Resources.Strings.GenErr_NoNetworkMessage;
             }
 
             if (string.IsNullOrWhiteSpace(message))
             {
-                message = Translate("GenErr_NoNetworkMessage");
+                message = Resources.Strings.GenErr_NoNetworkMessage;
             }
 
-            message += " " + Translate("GenErr_CheckYourNetworkMessage");
+            message += " " + Resources.Strings.GenErr_CheckYourNetworkMessage;
 
             ShowAlert(message, title);
         }
@@ -96,102 +83,17 @@ namespace MapsXF
 
         protected Task<bool> ShowConfirmAsync(string message, string title, string ok = null, string cancel = null)
         {
-            ok = ok ?? Translate("Gen_Yes");
-            cancel = cancel ?? Translate("Gen_No");
+            ok = ok ?? Resources.Strings.Gen_Yes;
+            cancel = cancel ?? Resources.Strings.Gen_No;
 
-            return Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
+            var res = Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
+
+            return res;
         }
 
         protected Task<string> ShowActionSheetAsync(string title, string cancel, string destruction, params string[] buttons)
         {
             return Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, buttons);
-        }
-
-        protected async Task ShowSnackbarAsync(string message, Controls.SnackbarDuration duration = Controls.SnackbarDuration.SHORT, string buttonText = "", ICommand command = null)
-        {
-            if (!(Navigation?.NavigationStack.LastOrDefault() is ContentPage page))
-            {
-                return;
-            }
-
-            Controls.SnackbarView view = null;
-
-            if (page.Content is Grid grid)
-            {
-                view = (Controls.SnackbarView)grid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-            }
-            else if (page.Content is ScrollView scrollView)
-            {
-                if (scrollView.Content is Grid scrollGrid)
-                {
-                    view = (Controls.SnackbarView)scrollGrid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-                }
-            }
-
-            if (view == null)
-            {
-                return;
-            }
-
-            await view.ShowAsync(message, duration, string.IsNullOrEmpty(buttonText) ? Translate("Gen_Close") : buttonText, command);
-        }
-
-        protected async Task ShowLoadingSnackbarAsync(string message)
-        {
-            if (!(Navigation?.NavigationStack.LastOrDefault() is ContentPage page))
-            {
-                return;
-            }
-
-            Controls.SnackbarView view = null;
-
-            if (page.Content is Grid grid)
-            {
-                view = (Controls.SnackbarView)grid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-            }
-            else if (page.Content is ScrollView scrollView)
-            {
-                if (scrollView.Content is Grid scrollGrid)
-                {
-                    view = (Controls.SnackbarView)scrollGrid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-                }
-            }
-
-            if (view == null)
-            {
-                return;
-            }
-
-            await view.ShowLoadingAsync(message);
-        }
-
-        protected async Task HideLoadingSnackbarAsync()
-        {
-            if (!(Navigation?.NavigationStack.LastOrDefault() is ContentPage page))
-            {
-                return;
-            }
-
-            Controls.SnackbarView view = null;
-
-            if (page.Content is Grid grid)
-            {
-                view = (Controls.SnackbarView)grid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-            }
-            else if (page.Content is ScrollView scrollView)
-            {
-                if (scrollView.Content is Grid scrollGrid)
-                {
-                    view = (Controls.SnackbarView)scrollGrid.Children.FirstOrDefault(x => x is Controls.SnackbarView);
-                }
-            }
-
-            if (view == null)
-            {
-                return;
-            }
-
-            await view.HideLoadingAsync();
         }
 
         private ICommand popModalCommand;
@@ -200,30 +102,25 @@ namespace MapsXF
             await Navigation.PopModalAsync();
         }));
 
-        private ITranslateService translateHelper;
-        protected ITranslateService TranslateHelper => translateHelper ?? (translateHelper = ComponentContainer.Current.Resolve<ITranslateService>());
+        private ICommand popCommand;
+        public ICommand PopCommand => popCommand ?? (popCommand = new Command(async () =>
+        {
+            await Navigation.PopAsync();
+        }));
 
         private ILoggerService loggerHelper;
         protected ILoggerService Logger => loggerHelper ?? (loggerHelper = ComponentContainer.Current.Resolve<ILoggerService>());
 
+        private IDialogService dialogService;
+        protected IDialogService Dialog => dialogService ?? (dialogService = ComponentContainer.Current.Resolve<IDialogService>());
+
+        private IConnectivityService connectivityService;
+        protected IConnectivityService Connectivity => connectivityService ?? (connectivityService = ComponentContainer.Current.Resolve<IConnectivityService>());
+
         public INavigation Navigation { get; set; }
         public bool IsBusy { get; set; }
         public bool IsNotBusy => !IsBusy;
-        public bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
-
-        public Task<bool?> ShowAsync()
-        {
-            taskCompletionSource = new TaskCompletionSource<bool?>();
-
-            return taskCompletionSource.Task;
-        }
-
-        public void Hide(bool? result = null)
-        {
-            taskCompletionSource?.TrySetResult(result);
-        }
-
-        private TaskCompletionSource<bool?> taskCompletionSource;
+        public bool IsConnected => Connectivity.IsConnected;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -7,41 +7,49 @@ using System.Threading.Tasks;
 
 namespace MapsXF.Core
 {
-    public class StorageKey
+    public class StorageRepository : IRepository
     {
-        public const string SettingsKey = "SettingsKey";
-    }
+        static Lazy<IRepository> implementation;
 
-    public class StorageRepository
-    {
-        static readonly Lazy<StorageRepository> implementation = new Lazy<StorageRepository>(() => CreateStorage(), isThreadSafe: true);
-
-        public static StorageRepository Current
+        public static IRepository Current
         {
             get
             {
-                var ret = implementation.Value;
+                var ret = implementation?.Value;
 
                 if (ret == null)
                 {
-                    throw new NotImplementedException();
+                    implementation = new Lazy<IRepository>(() => Create(), isThreadSafe: true);
+                    ret = implementation.Value;
                 }
 
                 return ret;
             }
         }
 
-        private static StorageRepository CreateStorage()
+        private static IRepository Create()
         {
             BlobCache.ApplicationName = AppConfig.AppName;
             return new StorageRepository();
         }
 
-        public async Task SaveAsync<T>(string id, T model)
+        public void Init(IRepository repository)
+        {
+            implementation = new Lazy<IRepository>(() => repository, isThreadSafe: true);
+        }
+
+        public async Task SaveAsync<T>(string id, T model, TimeSpan expiration = default)
         {
             try
             {
-                await BlobCache.LocalMachine.InsertObject(id + model.GetType().ToString(), model);
+                if (expiration == default)
+                {
+                    await BlobCache.LocalMachine.InsertObject(id + model.GetType().ToString(), model, expiration);
+                }
+                else
+                {
+                    await BlobCache.LocalMachine.InsertObject(id + model.GetType().ToString(), model);
+                }
             }
             catch (Exception ex)
             {
@@ -83,7 +91,7 @@ namespace MapsXF.Core
         {
             try
             {
-                await BlobCache.LocalMachine.InvalidateObject<T>(id + typeof(T).GetType().ToString());
+                await BlobCache.LocalMachine.InvalidateObject<T>(id + typeof(T).ToString());
             }
             catch (Exception ex)
             {

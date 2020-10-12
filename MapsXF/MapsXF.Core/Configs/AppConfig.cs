@@ -6,5 +6,7 @@
     public class AppConfig
     {
         public const string AppName = "MapsXF";
+
+        public const string AndroidAppCenterSecret = "";
     }
 }

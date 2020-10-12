@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GraphicsOverlayExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\GraphicFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ColorHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Enums\GpsMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GeometryItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LayerItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OfflineMapItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Providers\OverlayProvider.cs" />
@@ -27,5 +29,52 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\EditorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LayerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\OfflineMapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Geometries\GeometriesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Geometry\GeometryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Geometry\PointViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Map\MapViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Offline\OfflineMapSettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Geometries\GeometriesView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Geometry\GeometryView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Geometry\PointView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Map\MapPage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Offline\OfflineMapSettingsView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Geometries\GeometriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Geometry\GeometryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Geometry\PointView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Map\MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Offline\OfflineMapSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

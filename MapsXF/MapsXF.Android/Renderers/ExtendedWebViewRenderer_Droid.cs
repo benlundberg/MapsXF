@@ -1,5 +1,5 @@
 ﻿using Android.Content;
-using MapsXF;
+using MapsXF.Controls;
 using MapsXF.Android;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

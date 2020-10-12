@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MapsXF.OfflineMapSettingsView"
+             xmlns:local="clr-namespace:MapsXF"
+             xmlns:controls="clr-namespace:MapsXF.Controls"
+             Visual="Material"
+             x:Name="self">
+
+    <Frame Margin="8" VerticalOptions="End">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Nedladdade kartor" FontSize="Title" />
+                <Button 
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    Style="{StaticResource FloatingButtonMini}"
+                    Text="{StaticResource RemoveIcon}"
+                    BackgroundColor="{StaticResource Accent}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Command="{Binding DeleteMapsCommand}" />
+                <Button 
+                    Grid.Column="2"
+                    VerticalOptions="Center"
+                    Style="{StaticResource FloatingButtonMini}"
+                    Text="{StaticResource CheckIcon}"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    Command="{Binding DoneCommand}" />
+            </Grid>
+            <ListView
+                Grid.Row="1"
+                HasUnevenRows="True"
+                SelectionMode="None"
+                ItemsSource="{Binding DownloadedMaps}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" VerticalOptions="Center" />
+                                <Switch 
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    IsToggled="{Binding IsVisible, Mode=TwoWay}" />
+                                <Button
+                                    Grid.Column="2"
+                                    BackgroundColor="White"
+                                    Text="{StaticResource RemoveIcon}"
+                                    Style="{StaticResource OutlineButton}"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Command="{Binding BindingContext.DeleteMapCommand, Source={x:Reference self}}"
+                                    CommandParameter="{Binding}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Frame>
+</ContentView>

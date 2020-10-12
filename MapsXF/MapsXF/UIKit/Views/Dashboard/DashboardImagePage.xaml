@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MapsXF.DashboardImagePage"
-             xmlns:local="clr-namespace:MapsXF"
+             x:Class="MapsXF.UIKit.Views.DashboardImagePage"
+             xmlns:local="clr-namespace:MapsXF.UIKit"
              xmlns:controls="clr-namespace:MapsXF.Controls"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Visual="Material"
@@ -20,15 +20,16 @@
     </NavigationPage.TitleView>
 
     <ScrollView Padding="{StaticResource MainPadding}">
-        <controls:GridViewControl 
+        <controls:ItemsControl 
             NumberOfColumns="2"
             ColumnSpacing="20"
             RowSpacing="20"
             ItemsSource="{Binding DashboardItems}">
-            <controls:GridViewControl.ItemTemplate>
+            <controls:ItemsControl.ItemTemplate>
                 <DataTemplate x:DataType="local:DashboardItemViewModel">
                     <StackLayout>
                         <ff:CachedImage 
+                            HeightRequest="200"
                             Aspect="AspectFill"
                             Source="{Binding ImageSource}" />
                         <Label 
@@ -37,8 +38,8 @@
                             HorizontalOptions="Center" />
                     </StackLayout>
                 </DataTemplate>
-            </controls:GridViewControl.ItemTemplate>
-        </controls:GridViewControl>
+            </controls:ItemsControl.ItemTemplate>
+        </controls:ItemsControl>
     </ScrollView>
 
 </ContentPage>

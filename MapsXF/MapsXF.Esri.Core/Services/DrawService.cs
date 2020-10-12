@@ -2,6 +2,7 @@
 using Esri.ArcGISRuntime.UI;
 using Esri.Core.Factories;
 using Esri.Core.Helpers;
+using Esri.Core.Models;
 using Esri.Core.Providers;
 using MapsXF.Core;
 using System.Linq;

@@ -1,4 +1,5 @@
 ﻿using MapsXF;
+using MapsXF.Controls;
 using MapsXF.iOS;
 using Foundation;
 using UIKit;

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MapsXF
+namespace MapsXF.UIKit
 {
     public class ArticlesViewModel : BaseViewModel
     {
@@ -21,35 +21,35 @@ namespace MapsXF
                     Category = "Nature".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is nature",
-                    ImageSource = "http://lorempixel.com/600/300/nature/1"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Nature".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is nature",
-                    ImageSource = "http://lorempixel.com/600/300/nature/2"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Nature".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is nature",
-                    ImageSource = "http://lorempixel.com/600/300/nature/3"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Nature".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is nature",
-                    ImageSource = "http://lorempixel.com/600/300/nature/4"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Nature".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is nature",
-                    ImageSource = "http://lorempixel.com/600/300/nature/5"
+                    ImageSource = ImageService.GetRandomImage()
                 },
             };
 
@@ -60,42 +60,42 @@ namespace MapsXF
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/1"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/2"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/3"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/4"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/5"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Sport".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is sport",
-                    ImageSource = "http://lorempixel.com/600/300/sports/6"
+                    ImageSource = ImageService.GetRandomImage()
                 },
             };
 
@@ -106,42 +106,63 @@ namespace MapsXF
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/1"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/2"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/3"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/6"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/7"
+                    ImageSource = ImageService.GetRandomImage()
                 },
                 new ArticleItemViewModel
                 {
                     Category = "Animal".ToUpper(),
                     Year = DateTime.Today.Year.ToString(),
                     Title = "This is animals",
-                    ImageSource = "http://lorempixel.com/600/300/animals/8"
+                    ImageSource = ImageService.GetRandomImage()
+                },
+                new ArticleItemViewModel
+                {
+                    Category = "Animal".ToUpper(),
+                    Year = DateTime.Today.Year.ToString(),
+                    Title = "This is animals",
+                    ImageSource = ImageService.GetRandomImage()
+                },
+                new ArticleItemViewModel
+                {
+                    Category = "Animal".ToUpper(),
+                    Year = DateTime.Today.Year.ToString(),
+                    Title = "This is animals",
+                    ImageSource = ImageService.GetRandomImage()
+                },
+                new ArticleItemViewModel
+                {
+                    Category = "Animal".ToUpper(),
+                    Year = DateTime.Today.Year.ToString(),
+                    Title = "This is animals",
+                    ImageSource = ImageService.GetRandomImage()
                 },
             };
         }

@@ -1,23 +1,103 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Xamarin.Forms;
 
 namespace MapsXF.Controls
 {
-    public class PageTitleView : Label
+    public class PageTitleView : Grid
     {
         public PageTitleView()
         {
-            MaxLines = 1;
-            TextColor = Application.Current.ToolbarTextColor();
-            VerticalOptions = LayoutOptions.CenterAndExpand;
+            IsCentered = Device.RuntimePlatform == Device.iOS;
+            PropertyChanged += PageTitleView_PropertyChanged;
+        }
 
-            if (Device.RuntimePlatform == Device.iOS)
+        private void PageTitleView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            CenterTitle();
+        }
+
+        private void CenterTitle()
+        {
+            if (Width <= 0)
             {
-                Margin = new Thickness(8, 0, 0, 0);
-                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label));
+                return;
             }
-            else
+
+            if (IsCentered)
             {
-                FontSize = Device.GetNamedSize(NamedSize.Title, typeof(Label));
+                if (!(Children.First() is View view))
+                {
+                    return;
+                }
+
+                view.TranslationX = 0;
+
+                if (!(Parent is ContentPage contentPage))
+                {
+                    return;
+                }
+
+                if (!(contentPage.Parent is NavigationPage navigationPage))
+                {
+                    return;
+                }
+
+                view.HorizontalOptions = LayoutOptions.Center;
+                view.TranslationX = navigationPage.Width > 0 ? (this.Width - (navigationPage.Width - 16)) / 2 : 0;
+            }
+
+            PropertyChanged -= PageTitleView_PropertyChanged;
+        }
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: "Text",
+            returnType: typeof(string),
+            declaringType: typeof(PageTitleView),
+            defaultValue: default(string),
+            propertyChanged: TextChanged);
+
+        private static void TextChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (!(bindable is PageTitleView view))
+            {
+                return;
+            }
+
+            view.Children.Clear();
+
+            view.Children.Add(new Label
+            {
+                MaxLines = 1,
+                Text = view.Text,
+                TextColor = Application.Current.ToolbarTextColor(),
+                VerticalOptions = LayoutOptions.Center,
+                FontSize = 20,
+                Margin = Device.Idiom == TargetIdiom.Desktop ? new Thickness(40, 0, 0, 0) : new Thickness(0),
+                FontFamily = "OpenSansSemiBold"
+            });
+        }
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        private bool isCentered;
+        public bool IsCentered
+        {
+            get
+            {
+                return isCentered;
+            }
+            set
+            {
+                isCentered = value;
+
+                if (isCentered)
+                {
+                    this.CenterTitle();
+                }
             }
         }
     }

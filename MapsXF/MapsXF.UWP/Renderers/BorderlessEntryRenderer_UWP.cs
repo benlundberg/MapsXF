@@ -18,7 +18,7 @@ namespace MapsXF.UWP
 
             if (e.OldElement == null)
             {
-                Control.BorderThickness = new Windows.UI.Xaml.Thickness(0, 0, 0, 1);
+                Control.BorderThickness = new Windows.UI.Xaml.Thickness(0);
             }
         }
     }

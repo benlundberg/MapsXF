@@ -1,40 +1,55 @@
 ﻿using Akavache;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace MapsXF.Core
 {
-    public class SecureRepository
+    public class SecureRepository : IRepository
     {
-        static readonly Lazy<SecureRepository> implementation = new Lazy<SecureRepository>(() => CreateSecure(), isThreadSafe: true);
+        static Lazy<IRepository> implementation;
 
-        public static SecureRepository Current
+        public static IRepository Current
         {
             get
             {
-                var ret = implementation.Value;
+                var ret = implementation?.Value;
 
                 if (ret == null)
                 {
-                    throw new NotImplementedException();
+                    implementation = new Lazy<IRepository>(() => Create(), isThreadSafe: true);
+                    ret = implementation.Value;
                 }
 
                 return ret;
             }
         }
 
-        private static SecureRepository CreateSecure()
+        private static IRepository Create()
         {
             BlobCache.ApplicationName = AppConfig.AppName;
             return new SecureRepository();
         }
 
-        public async Task SaveAsync<T>(string id, T model)
+        public void Init(IRepository repository)
+        {
+            implementation = new Lazy<IRepository>(() => repository, isThreadSafe: true);
+        }
+
+        public async Task SaveAsync<T>(string id, T model, TimeSpan expiration = default)
         {
             try
             {
-                await BlobCache.Secure.InsertObject(id + model.GetType().ToString(), model);
+                if (expiration == default)
+                {
+                    await BlobCache.Secure.InsertObject(id + model.GetType().ToString(), model, expiration);
+                }
+                else
+                {
+                    await BlobCache.Secure.InsertObject(id + model.GetType().ToString(), model);
+                }
             }
             catch (Exception ex)
             {
@@ -47,6 +62,22 @@ namespace MapsXF.Core
             try
             {
                 return await BlobCache.Secure.GetObject<T>(id + typeof(T).ToString());
+            }
+            catch (Exception ex)
+            {
+                ex.Print();
+            }
+
+            return default;
+        }
+
+        public async Task<T> LoadAsync<T>(Func<T, bool> predExpr)
+        {
+            try
+            {
+                var list = await GetAllAsync<T>();
+
+                return list.FirstOrDefault(predExpr);
             }
             catch (Exception ex)
             {
@@ -78,6 +109,36 @@ namespace MapsXF.Core
             {
                 ex.Print();
             }
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>()
+        {
+            try
+            {
+                return await BlobCache.Secure.GetAllObjects<T>();
+            }
+            catch (Exception ex)
+            {
+                ex.Print();
+            }
+
+            return default;
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>(Func<T, bool> predExpr)
+        {
+            try
+            {
+                var list = await GetAllAsync<T>();
+
+                return list?.Where(predExpr);
+            }
+            catch (Exception ex)
+            {
+                ex.Print();
+            }
+
+            return default;
         }
     }
 }

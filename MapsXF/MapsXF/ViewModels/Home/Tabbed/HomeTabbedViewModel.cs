@@ -13,9 +13,9 @@ namespace MapsXF
 
             // Adding pages to the tabbed page //
 
-            //var loggerPage = ViewContainer.Current.CreatePage<LoggerViewModel>();
-            //loggerPage.Title = Translate("Gen_Log");
-            //homePage.Children.Add(loggerPage);
+            var loggerPage = ViewContainer.Current.CreatePage<LoggerViewModel>();
+            loggerPage.Title = Resources.Strings.Gen_Log;
+            homePage.Children.Add(loggerPage);
 
             base.OnPageCreated(page);
         }
